@@ -46,10 +46,33 @@ class LinkedList{
             
         }
 
+        void insertDataAfter(char data, char after){
+            if(head == NULL){
+                cout << "Error : LinkedList is Empty!" << endl;
+            }else if(after == tail->id){
+                insertToTail(data);
+            }else{
+                Node *tmp = head;
+                while(tmp != NULL && tmp->id!=after){
+                    tmp = tmp->next;
+                }
+
+                if(tmp == NULL){
+                    cout << "After data not found" << endl;
+                }else{
+                    Node*newNode = new Node();
+                    newNode->id = data;
+                    
+                    newNode->next = tmp->next;
+                    tmp->next = newNode;
+                }
+            }
+        }
+
         void printAll(){
             Node *tmp = head;
             while(tmp != NULL){
-                cout << tmp -> id  << endl;
+                cout << tmp -> id << " > ";
                 tmp = tmp -> next;
             }
         }
@@ -95,6 +118,8 @@ int main(){
 
     cout << list1 -> head -> id << endl;
     cout << list1 -> tail -> id << endl;
+
+    list1 -> insertDataAfter('Z', 'K');
 
     cout << endl;
 
