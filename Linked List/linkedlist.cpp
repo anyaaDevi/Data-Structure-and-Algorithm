@@ -76,6 +76,25 @@ class LinkedList{
                 tmp = tmp -> next;
             }
         }
+
+        void deleteData(char target){
+            Node *tmp = head;
+
+            // If target data is in the head
+            if (tmp != NULL && tmp->id == target) {
+                head = tmp->next;
+                delete tmp;
+                return;
+            }
+
+            while(tmp->next->id != target && tmp->next!=NULL){
+            	tmp = tmp->next;
+			}
+			
+			Node *tmpDel = tmp->next;
+            tmp->next = tmpDel->next;
+            delete tmpDel;
+        }
 };
 
 int main(){
@@ -120,6 +139,8 @@ int main(){
     cout << list1 -> tail -> id << endl;
 
     list1 -> insertDataAfter('Z', 'K');
+
+    list1 -> deleteData('A');
 
     cout << endl;
 
